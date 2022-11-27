@@ -272,6 +272,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 332c0b9e3cc478d458b6424728bd450a, type: 2}
   - {fileID: 11400000, guid: 10af9e46ed75fc94791a9dc2cdb38284, type: 2}
   timeBetweenWaves: 0
+  isLooping: 1
 --- !u!4 &965843813
 Transform:
   m_ObjectHideFlags: 0
@@ -428,7 +429,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 596650810795249211, guid: 07e6d03940d7f9d4f9187c37b035a425, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 596650810795249211, guid: 07e6d03940d7f9d4f9187c37b035a425, type: 3}
       propertyPath: m_SortingLayerID
