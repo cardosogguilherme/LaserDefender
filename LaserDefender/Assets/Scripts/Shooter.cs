@@ -4,14 +4,31 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
+    [Header("General")]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed = 10f;
     [SerializeField] float projectileLifetime = 5f;
-    [SerializeField] float firingRate = 0.2f;
+    [SerializeField] float baseFiringRate = 0.2f;
 
+    [Header("Enemy AI")]
+    [SerializeField] bool useAI;
+    [SerializeField] float firingRateVariance = 0f;
+    [SerializeField] float minimumFiringRate = 0.2f;
+
+    [HideInInspector]
     public bool isFiring;
+    [HideInInspector]
     public bool hadFinishedFiring = true;
+    
     private Coroutine firingCoroutine;
+
+    private void Start()
+    {
+        if (useAI)
+        {
+            isFiring = true;
+        }
+    }
 
     void Update()
     {
@@ -50,9 +67,20 @@ public class Shooter : MonoBehaviour
             Destroy(projectile, projectileLifetime);
             hadFinishedFiring = false;
 
-            yield return new WaitForSecondsRealtime(firingRate);
+            float firingInterval = useAI ? GetFiringWaitTime() : baseFiringRate;
+
+            yield return new WaitForSecondsRealtime(firingInterval);
 
             hadFinishedFiring = true;
         }
+    }
+
+    private float GetFiringWaitTime()
+    {
+        float timeToNextProjectile = UnityEngine.Random.Range(
+            baseFiringRate - firingRateVariance,
+            baseFiringRate + firingRateVariance);
+
+        return Mathf.Clamp(timeToNextProjectile, minimumFiringRate, float.MaxValue);
     }
 }
