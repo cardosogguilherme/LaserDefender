@@ -1,9 +1,18 @@
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] int health = 50;
     [SerializeField] ParticleSystem hitEffect;
+
+    [SerializeField] bool shouldApplyCameraShake;
+    CameraShake cameraShake;
+
+    private void Awake()
+    {
+        cameraShake = Camera.main.GetComponent<CameraShake>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,8 +22,17 @@ public class Health : MonoBehaviour
         
         TakeDamage(damageDealer.GetDamage());
         PlayHitEffect();
+        ShakeCamera();
 
         damageDealer.Hit();
+    }
+
+    private void ShakeCamera()
+    {
+        if(cameraShake != null && shouldApplyCameraShake)
+        {
+            cameraShake.Play();
+        }
     }
 
     private void PlayHitEffect()
