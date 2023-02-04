@@ -22,6 +22,13 @@ public class Shooter : MonoBehaviour
     
     private Coroutine firingCoroutine;
 
+    AudioPlayer audioPlayer;
+
+    private void Awake()
+    {
+        audioPlayer = FindObjectOfType<AudioPlayer>();
+    }
+
     private void Start()
     {
         if (useAI)
@@ -68,6 +75,8 @@ public class Shooter : MonoBehaviour
             hadFinishedFiring = false;
 
             float firingInterval = useAI ? GetFiringWaitTime() : baseFiringRate;
+
+            audioPlayer.PlayShootingClip();
 
             yield return new WaitForSecondsRealtime(firingInterval);
 
