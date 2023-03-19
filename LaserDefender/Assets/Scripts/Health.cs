@@ -71,7 +71,7 @@ public class Health : MonoBehaviour
             }
             else
             {
-                scoreKeeper.ResetScore();
+                //scoreKeeper.ResetScore();
                 levelManager.LoadGameOver();
             }
             Debug.Log(scoreKeeper.GetScore());
