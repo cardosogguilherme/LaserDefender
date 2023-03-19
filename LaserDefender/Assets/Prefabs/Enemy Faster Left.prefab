@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: score
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 3832825836533947555, guid: 759a24053cf38d24f8fcdefea69bf085, type: 3}
+      propertyPath: health
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7108870927326050231, guid: 759a24053cf38d24f8fcdefea69bf085, type: 3}
       propertyPath: m_Sprite
       value: 
